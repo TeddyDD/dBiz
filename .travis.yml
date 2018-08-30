@@ -18,7 +18,7 @@ addons:
             - libgtk2.0-dev
             - libjack-jackd2-dev
 
-install: .travis-install.sh
+install: ./travis-install-rack.sh
 
 script:
     - make dep
