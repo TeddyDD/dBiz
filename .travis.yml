@@ -1,7 +1,6 @@
 language: cpp
 env:
-    - RACK_VER="v0.6.2b"
-    - RACK_DIR="./Rack"
+    - RACK_VER="v0.6.2b" RACK_DIR="./Rack"
 addons:
     apt:
         packages:
