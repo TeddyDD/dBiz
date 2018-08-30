@@ -1,0 +1,36 @@
+language: cpp
+env:
+    - RACK_VER="v0.6.2b"
+    - RACK_DIR="./Rack"
+addons:
+    apt:
+        packages:
+            - git
+            - curl
+            - cmake
+            - libx11-dev
+            - libglu1-mesa-dev
+            - libxrandr-dev
+            - libxinerama-dev
+            - libxcursor-dev
+            - libxi-dev
+            - zlib1g-dev
+            - libasound2-dev
+            - libgtk2.0-dev
+            - libjack-jackd2-dev
+
+install:
+    - git clone --recursive https://github.com/VCVRack/Rack.git
+    - cd Rack
+    - git checkout ${RACK_VER}
+    - make dep
+    - make
+
+script:
+    - make dep
+    - make
+    - make dist
+
+cache:
+    directories:
+        - Rack
