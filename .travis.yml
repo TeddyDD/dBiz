@@ -1,32 +1,35 @@
 language: cpp
 env:
-    - RACK_VER="v0.6.2b" RACK_DIR="$TRAVIS_BUILD_DIR/Rack"
+    - RACK_VER="v0.6.2b" RACK_DIR=" $HOME/Rack-${RACK_VER} CC=gcc-5 CXX=g++-5"
 addons:
     apt:
+        sources:
+        - ubuntu-toolchain-r-test
         packages:
-            - git
-            - curl
-            - cmake
-            - libx11-dev
-            - libglu1-mesa-dev
-            - libxrandr-dev
-            - libxinerama-dev
-            - libxcursor-dev
-            - libxi-dev
-            - zlib1g-dev
-            - libasound2-dev
-            - libgtk2.0-dev
-            - libjack-jackd2-dev
-
+        - gcc-5
+        - g++-5
+        - libstdc++6
+        - build-essential
+        - git
+        - curl
+        - cmake
+        - libx11-dev
+        - libglu1-mesa-dev
+        - libxrandr-dev
+        - libxinerama-dev
+        - libxcursor-dev
+        - libxi-dev
+        - zlib1g-dev
+        - libasound2-dev
+        - libgtk2.0-dev
+        - libjack-jackd2-dev
 install:
-    - git clone --recursive https://github.com/VCVRack/Rack.git $TRAVIS_BUILD_DIR/Rack
-    - cd $TRAVIS_BUILD_DIR/Rack
+    - git clone --recursive https://github.com/VCVRack/Rack.git $RACK_DIR
+    - cd $RACK_DIR
     - git checkout ${RACK_VER}
     - make dep
     - make
     - cd $TRAVIS_BUILD_DIR
-
-
 
 script:
     - make dep
@@ -35,4 +38,4 @@ script:
 
 cache:
     directories:
-        - Rack
+        - $RACK_DIR
